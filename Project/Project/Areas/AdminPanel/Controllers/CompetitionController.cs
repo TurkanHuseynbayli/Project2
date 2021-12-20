@@ -64,59 +64,14 @@ namespace Project.Areas.AdminPanel.Controllers
                 await _context.Competitions.AddAsync(newCompetition);
 
 
-                //Slider newSlider = new Slider();
-                //newSlider.Image = await photo.SaveImageAsync(_env.WebRootPath, "img",);
-                //await _context.Sliders.AddAsync(newSlider);
+               
             }
 
             await _context.SaveChangesAsync();
 
 
             return RedirectToAction(nameof(Index));
-            //if (competition.Photos == null)
-            //{
-            //    return View();
-            //}
-
-
-            //foreach (IFormFile photo in competition.Photos)
-            //{
-
-            //    if (!photo.IsImage())
-            //    {
-            //        ModelState.AddModelError("Photo", $"{photo.FileName}-not image type");
-            //        return View();
-            //    }
-            //    if (!photo.MaxSize(200))
-            //    {
-            //        ModelState.AddModelError("Photo", $"{photo.FileName}-max length 200kb");
-            //        return View();
-            //    }
-            //    Competition newCompetition = new Competition();
-            //    string path = Path.Combine("img");
-            //    newCompetition.Image = await photo.SaveImageAsync(_env.WebRootPath, path);
-            //    newCompetition.Name = competition.Name;
-            //    newCompetition.Description = competition.Description;
-
-            //    await _context.Competitions.AddAsync(newCompetition);
-            //    if (!ModelState.IsValid) return NotFound();
-            //    bool isExist = _context.Competitions.Where(c => c.IsDeleted == false).Any(c => c.Name.ToLower() == competition.Name.ToLower());
-            //    if (isExist)
-            //    {
-            //        ModelState.AddModelError("Name", "bu addan var");
-            //        return View();
-            //    }
-
-            //    competition.IsDeleted = false;
-            //    await _context.Competitions.AddAsync(competition);
-
-
-
-            //}
-            //await _context.SaveChangesAsync();
-
-
-            //return RedirectToAction(nameof(Index));
+           
         }
 
         public async Task<IActionResult> Detail(int? id)
@@ -151,10 +106,10 @@ namespace Project.Areas.AdminPanel.Controllers
             }
                         competition.IsDeleted = true;
             competition.DeletedTime = DateTime.Now;
-            //foreach (Person p in competition.Persons)
-            //{
-            //    p.IsDeleted = true;
-            //}
+            foreach (Person p in competition.Persons)
+            {
+                p.IsDeleted = true;
+            }
             _context.Competitions.Remove(competition);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
