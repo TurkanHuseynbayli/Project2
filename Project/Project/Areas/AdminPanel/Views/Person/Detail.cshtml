@@ -1,0 +1,25 @@
+﻿@model Person
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="person-details-area pt-150 pb-140 text-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="person-details text-center">
+                    
+                    <div class="person-details-content mt-5 text-center bg-white p-5">
+                        <h2>@Model.Surname </h2>
+                        <h2>By @Model.Name</h2>
+                        <h2>By @Model.Age</h2>
+                        <h2>By @Model.Email</h2>
+                        <p>@Html.Raw(Model.Competition.Description)</p>
+                        <a class="btn btn btn-secondary" asp-action="Index">Go Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,70 @@
+﻿@model List<Competition>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Competition</h4>
+            <a  asp-controller="Competition" asp-action="Create" class="btn btn-success">Create</a>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Image
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Description
+                            </th>
+
+                            <th>
+                                Settings
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                            @foreach (Competition competition in Model)
+                            {
+                                <tr>
+
+                                    <td>
+                                        <img src="~/img/@competition.Image" style="width:100px!important;height:100px!important;" />
+                                    </td>
+                                    <td>@competition.Name</td>
+                                    <td>@Html.Raw(competition.Description)</td>
+                                    <td>
+                                        <a asp-controller="Competition" asp-action="Detail" asp-route-id="@competition.Id" class="btn btn-outline-dark">
+                                            <i class="mdi mdi-information"></i>
+                                        </a>
+                                        <a asp-controller="Competition" asp-action="Update" asp-route-id="@competition.Id" class="btn btn-outline-warning">
+                                            <i class="mdi mdi-table-edit"></i>
+                                        </a>
+                                        <a asp-controller="Competition" asp-action="Delete" asp-route-id="@competition.Id" class="btn btn-outline-danger">
+                                            <i class="mdi mdi-delete"></i>
+                                        </a>
+
+                                    </td>
+                                </tr>
+
+                            }
+                        
+                       
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
